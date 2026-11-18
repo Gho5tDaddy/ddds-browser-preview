@@ -1,0 +1,13 @@
+{
+  "browserRoute": "1a12184132654fdabb3801036a0c99ed",
+  "kind": "Playable development preview",
+  "source": "b7080b4330b717b1e2d1df445a5c21868b024644",
+  "nativeGraphics": "80/84 at f34ddcc; full native qualification remains open",
+  "humanControllerAcceptance": "Provisional",
+  "unity": "6000.3.24f1",
+  "qualificationRuns": [
+    "ba89edb1491f4aebbd78ca50cdcbb08a",
+    "75a6ecf0533a4023b0589043527201c6",
+    "607951a7bc634fd1bdc7586b4a69ea2a"
+  ]
+}

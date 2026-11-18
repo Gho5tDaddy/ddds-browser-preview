@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171014">
+  <link rel="icon" href="data:,">
+  <title>Dice, Drinks &amp; Death Saves — The Video Game</title>
+  <style>
+    :root{color-scheme:dark;font-family:Georgia,serif;color:#f5e3bc;background:#171014}
+    *{box-sizing:border-box}body{margin:0;width:100vw;height:100dvh;overflow:hidden}
+    #game{position:relative;width:100%;height:100%;background:#110e12}
+    canvas{display:block;width:100%;height:100%;outline:none;touch-action:none}
+    #loading{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at center,#302023,#110e12 75%)}
+    #loading[hidden]{display:none}.panel{width:min(86vw,620px);text-align:center;padding:28px}
+    .logo{width:min(100%,520px);height:auto}.label{font:14px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#d9b772}
+    progress{appearance:none;width:100%;height:10px;margin:24px 0 10px;border:2px solid #a98243;background:#21171a}
+    progress::-webkit-progress-bar{background:#21171a}progress::-webkit-progress-value{background:#e9c477}
+    progress::-moz-progress-bar{background:#e9c477}#status{font:16px/1.6 system-ui,sans-serif;min-height:52px}
+    .hint{font:13px/1.6 system-ui,sans-serif;color:#c4b5a2;margin-top:16px}
+    button{border:1px solid #be9955;background:#251a1e;color:#f7e6c5;padding:10px 16px;cursor:pointer;font:14px system-ui,sans-serif}
+    button:focus-visible{outline:2px solid #fff1c7;outline-offset:3px}button:hover{background:#433027}
+    #fullscreen{position:absolute;right:10px;top:10px;padding:7px 10px;background:#171014c9}
+  </style>
+</head>
+<body>
+  <main id="game">
+    <canvas id="unity-canvas" width="1280" height="720" tabindex="0" aria-label="Dice, Drinks and Death Saves game"></canvas>
+    <div id="loading" role="status" aria-live="polite">
+      <div class="panel">
+        <img class="logo" src="TemplateData/title.png" alt="Dice, Drinks and Death Saves — The Video Game">
+        <p class="label">Playable development preview</p>
+        <progress id="progress" value="0" max="1" aria-label="Game download progress"></progress>
+        <div id="status">Preparing your adventure…</div>
+        <button id="retry" hidden>Try again</button>
+        <p class="hint">Keyboard or a supported gamepad.<br>Progress is saved in this browser. Each visitor plays their own game.</p>
+      </div>
+    </div>
+    <button id="fullscreen" aria-label="Enter fullscreen" hidden>Fullscreen</button>
+  </main>
+  <script>
+    'use strict';
+    const canvas=document.querySelector('#unity-canvas');
+    const loading=document.querySelector('#loading');
+    const status=document.querySelector('#status');
+    const progress=document.querySelector('#progress');
+    const retry=document.querySelector('#retry');
+    const fullscreen=document.querySelector('#fullscreen');
+    const previewState={phase:'loading',progress:0};
+    window.dddsPreviewState=previewState;
+    // Keep normal game keys from opening browser panels or moving focus away.
+    // Do not stop propagation: Unity must still receive the trusted key event.
+    window.addEventListener('keydown',event=>{
+      if(document.activeElement!==canvas)return;
+      if(['Tab',' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key) ||
+        event.ctrlKey && ['j','k','l'].includes(event.key.toLowerCase()))event.preventDefault();
+    },true);
+    retry.onclick=()=>location.reload();
+    function fail(message,error){
+      previewState.phase='error';
+      loading.hidden=false;
+      progress.hidden=true;
+      status.textContent=message;
+      retry.hidden=false;
+      if(error)console.error(error);
+    }
+    async function boot(){
+      if(!('serviceWorker' in navigator) || !('DecompressionStream' in window))
+        throw new Error('This preview requires HTTPS and a current desktop browser.');
+      await navigator.serviceWorker.register('preview-worker.js',{scope:'./',updateViaCache:'none'});
+      await navigator.serviceWorker.ready;
+      if(!navigator.serviceWorker.controller)await new Promise(resolve=>
+        navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
+      const script=document.createElement('script');
+      script.src='Build/WebPreview.loader.js';
+      await new Promise((resolve,reject)=>{script.onload=resolve;script.onerror=reject;document.body.append(script);});
+      const config={
+        arguments:[],
+        dataUrl:'Build/WebPreview.data',
+        frameworkUrl:'Build/WebPreview.framework.js',
+        codeUrl:'Build/WebPreview.wasm',
+        streamingAssetsUrl:'StreamingAssets',
+        companyName:"DDDS",
+        productName:"Dice Drinks and Death Saves",
+        productVersion:"1.0",
+        autoSyncPersistentDataPath:true,
+        devicePixelRatio:Math.min(window.devicePixelRatio||1,2),
+        showBanner:(message,type)=>{if(type==='error')console.error(message);else console.warn(message);}
+      };
+      const instance=await createUnityInstance(canvas,config,value=>{
+        progress.value=value;
+        previewState.progress=value;
+        status.textContent='Loading your adventure… '+Math.round(value*100)+'%';
+      });
+      previewState.phase='ready';
+      loading.hidden=true;
+      fullscreen.hidden=false;
+      fullscreen.onclick=()=>{canvas.focus({preventScroll:true});instance.SetFullscreen(1);};
+      canvas.focus({preventScroll:true});
+    }
+    async function start(){
+      if(!navigator.locks){
+        fail('Please use a current version of Chrome, Edge, Firefox or Safari to play.');
+        return;
+      }
+      const directory=new URL('.',location.href).pathname;
+      await navigator.locks.request('ddds-preview-profile:'+directory,{ifAvailable:true},async lock=>{
+        if(!lock){fail('This game is already open in another tab. Close that copy, then try again.');return;}
+        try{
+          await boot();
+          // Hold ownership until this document closes, including while it is in the background.
+          await new Promise(()=>{});
+        }catch(error){fail('The game could not start. Try again in a current desktop browser.',error);}
+      });
+    }
+    start().catch(error=>fail('Your browser could not open this game. Please try again.',error));
+  </script>
+</body>
+</html>

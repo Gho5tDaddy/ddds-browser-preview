@@ -1,0 +1,75 @@
+{
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "index.html",
+      "bytes": 6414,
+      "sha256": "0fb3209724529d396df94775a9797681e9627642716a905fadac32f8e6dd8fef"
+    },
+    {
+      "path": "preview-assets.json",
+      "bytes": 378,
+      "sha256": "8007c974f57365f20c0cb643c4fa7c2dc10d9f94614761b1d542c4dcc06af810"
+    },
+    {
+      "path": "preview-worker.js",
+      "bytes": 2251,
+      "sha256": "6d2a59e5ec30872ddc99543912fe9294bf9864dd88979b6b7f08a784823e483b"
+    },
+    {
+      "path": "TemplateData/title.png",
+      "bytes": 1736968,
+      "sha256": "2f8095274606b831c5611834950237fea81974bac29d3b3d0eb90ba650c14a9c"
+    },
+    {
+      "path": "Build/WebPreview.data.6179fff73504ff42.0.gz",
+      "bytes": 83886080,
+      "sha256": "c46d481107ae7d5434918e25c1cdc51f6c1412f33a638e42f0e6c018946ce366"
+    },
+    {
+      "path": "Build/WebPreview.data.6179fff73504ff42.1.gz",
+      "bytes": 83886080,
+      "sha256": "671cffbdac1375a479ee75b023554cf5117ed183717d456ab2b35265dceb57c8"
+    },
+    {
+      "path": "Build/WebPreview.data.6179fff73504ff42.2.gz",
+      "bytes": 38140620,
+      "sha256": "4507a7b027b213ca6a38bb238d5810f03e0008241f43f065ef23c46c0ea0dff0"
+    },
+    {
+      "path": "Build/WebPreview.framework.js",
+      "bytes": 824384,
+      "sha256": "5b5dd728c61536befc6ad41309c4ea2617db6163dfdb500a0565a8ba8581c7fd"
+    },
+    {
+      "path": "Build/WebPreview.loader.js",
+      "bytes": 58344,
+      "sha256": "387cd243225f3e03cc1b5fe4f259a69f2ff8b093fa465fec7753bf087d96dde8"
+    },
+    {
+      "path": "Build/WebPreview.wasm.612aafdd900f1e98.0.gz",
+      "bytes": 24013145,
+      "sha256": "612aafdd900f1e9834ecca4ef9d656de98e8a688a0b9393b5ca59c3f1cc97f04"
+    }
+  ],
+  "compressed": [
+    {
+      "file": "Build/WebPreview.data",
+      "rawBytes": 233824136,
+      "downloadBytes": 205912780,
+      "sha256": "6179fff73504ff420f2623ad78e8599212e5e02397c9f7229f502c663720361f",
+      "parts": 3
+    },
+    {
+      "file": "Build/WebPreview.wasm",
+      "rawBytes": 106587196,
+      "downloadBytes": 24013145,
+      "sha256": "612aafdd900f1e9834ecca4ef9d656de98e8a688a0b9393b5ca59c3f1cc97f04",
+      "parts": 1
+    }
+  ]
+}
