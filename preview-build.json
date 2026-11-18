@@ -7,13 +7,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 6414,
-      "sha256": "0fb3209724529d396df94775a9797681e9627642716a905fadac32f8e6dd8fef"
+      "bytes": 8374,
+      "sha256": "9f7d3c381094cb51f110d8b21a58530ca411365093ea6b92df6fc6067e3ffc87"
     },
     {
       "path": "preview-assets.json",
-      "bytes": 378,
-      "sha256": "8007c974f57365f20c0cb643c4fa7c2dc10d9f94614761b1d542c4dcc06af810"
+      "bytes": 510,
+      "sha256": "9e38b22457d719b7e69793fd9f72db6f368e7b826abc500679fdae20405c5be0"
     },
     {
       "path": "preview-worker.js",
@@ -26,50 +26,60 @@
       "sha256": "2f8095274606b831c5611834950237fea81974bac29d3b3d0eb90ba650c14a9c"
     },
     {
-      "path": "Build/WebPreview.data.6179fff73504ff42.0.gz",
-      "bytes": 83886080,
-      "sha256": "c46d481107ae7d5434918e25c1cdc51f6c1412f33a638e42f0e6c018946ce366"
+      "path": "TemplateData/touch-pad.css",
+      "bytes": 2679,
+      "sha256": "d60f7db918e8d72505328b7c647f6608b7bf85edd788df17a17a86dec0b68f94"
     },
     {
-      "path": "Build/WebPreview.data.6179fff73504ff42.1.gz",
-      "bytes": 83886080,
-      "sha256": "671cffbdac1375a479ee75b023554cf5117ed183717d456ab2b35265dceb57c8"
+      "path": "TemplateData/touch-pad.js",
+      "bytes": 3470,
+      "sha256": "a269d0df7580362ef7dff7a7b44cbf6dd02d816c8df145be4852b01b526bbfb1"
     },
     {
-      "path": "Build/WebPreview.data.6179fff73504ff42.2.gz",
-      "bytes": 38140620,
-      "sha256": "4507a7b027b213ca6a38bb238d5810f03e0008241f43f065ef23c46c0ea0dff0"
+      "path": "Build/52179e874162bada828cb819002170c1.wasm.75565c9662c6c39d.0.gz",
+      "bytes": 24010940,
+      "sha256": "75565c9662c6c39dabacb6208a3aed8c14aa56f174eb7de6ae626b906a016f64"
     },
     {
-      "path": "Build/WebPreview.framework.js",
-      "bytes": 824384,
-      "sha256": "5b5dd728c61536befc6ad41309c4ea2617db6163dfdb500a0565a8ba8581c7fd"
-    },
-    {
-      "path": "Build/WebPreview.loader.js",
+      "path": "Build/7e8397a1e200520514a23856e1f85287.loader.js",
       "bytes": 58344,
-      "sha256": "387cd243225f3e03cc1b5fe4f259a69f2ff8b093fa465fec7753bf087d96dde8"
+      "sha256": "fc896f9386eeeb292b2f632d2a8e8ff8c6f1ad9872c0fb75780ee23f287ce20d"
     },
     {
-      "path": "Build/WebPreview.wasm.612aafdd900f1e98.0.gz",
-      "bytes": 24013145,
-      "sha256": "612aafdd900f1e9834ecca4ef9d656de98e8a688a0b9393b5ca59c3f1cc97f04"
+      "path": "Build/a16f49f8af4a875e03b1cebef6b80677.data.caaa5aa31a8fcd43.0.gz",
+      "bytes": 83886080,
+      "sha256": "ceaa8ca67830733ac6fb37656b4d09ce6d1edb9bfa7a6cff0d203553193fd287"
+    },
+    {
+      "path": "Build/a16f49f8af4a875e03b1cebef6b80677.data.caaa5aa31a8fcd43.1.gz",
+      "bytes": 83886080,
+      "sha256": "24ca48523cb9d9e1ba168d86c38c83da813b7b1aa99b022a520f6644d37bec3d"
+    },
+    {
+      "path": "Build/a16f49f8af4a875e03b1cebef6b80677.data.caaa5aa31a8fcd43.2.gz",
+      "bytes": 37805702,
+      "sha256": "6b0b3f3d5b15281c6f2a23b1cf66cf4021ebff41efbe19b447c63f285fcdefde"
+    },
+    {
+      "path": "Build/bb5c9616db4bada7253c7895991b0cce.framework.js",
+      "bytes": 824539,
+      "sha256": "9d1708e89b1d944863541df8e9d1e6b197a560153f4023901894e5243859bc6a"
     }
   ],
   "compressed": [
     {
-      "file": "Build/WebPreview.data",
-      "rawBytes": 233824136,
-      "downloadBytes": 205912780,
-      "sha256": "6179fff73504ff420f2623ad78e8599212e5e02397c9f7229f502c663720361f",
-      "parts": 3
+      "file": "Build/52179e874162bada828cb819002170c1.wasm",
+      "rawBytes": 106591435,
+      "downloadBytes": 24010940,
+      "sha256": "75565c9662c6c39dabacb6208a3aed8c14aa56f174eb7de6ae626b906a016f64",
+      "parts": 1
     },
     {
-      "file": "Build/WebPreview.wasm",
-      "rawBytes": 106587196,
-      "downloadBytes": 24013145,
-      "sha256": "612aafdd900f1e9834ecca4ef9d656de98e8a688a0b9393b5ca59c3f1cc97f04",
-      "parts": 1
+      "file": "Build/a16f49f8af4a875e03b1cebef6b80677.data",
+      "rawBytes": 233573985,
+      "downloadBytes": 205577862,
+      "sha256": "caaa5aa31a8fcd4397b7bfe7b16f5c79b5e96b68c04af778db4d4df4db21f4e7",
+      "parts": 3
     }
   ]
 }

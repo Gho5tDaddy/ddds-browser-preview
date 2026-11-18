@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#171014">
   <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="TemplateData/touch-pad.css">
   <title>Dice, Drinks &amp; Death Saves — The Video Game</title>
   <style>
     :root{color-scheme:dark;font-family:Georgia,serif;color:#f5e3bc;background:#171014}
@@ -24,8 +25,41 @@
   </style>
 </head>
 <body>
-  <main id="game">
-    <canvas id="unity-canvas" width="1280" height="720" tabindex="0" aria-label="Dice, Drinks and Death Saves game"></canvas>
+  <main id="preview">
+    <div id="game">
+      <canvas id="unity-canvas" width="1280" height="720" tabindex="0" aria-label="Dice, Drinks and Death Saves game"></canvas>
+      <button id="fullscreen" aria-label="Enter fullscreen" hidden>Fullscreen</button>
+    </div>
+    <section class="touch-deck touch-left" aria-label="Movement and menu controls">
+      <div class="touch-row">
+        <button data-pad="12">Pause <small>Menu</small></button>
+        <button data-pad="13">Bag <small>View</small></button>
+      </div>
+      <div id="touch-stick" aria-label="Drag to move"><span></span></div>
+      <div class="touch-row">
+        <button data-pad="10">Block <small>LB</small></button>
+        <button data-pad="14">Signature <small>LT</small></button>
+      </div>
+      <div class="touch-row">
+        <button data-pad="2" aria-label="Previous item or menu choice">‹</button>
+        <button data-pad="1" aria-label="Use selected item">Use</button>
+        <button data-pad="3" aria-label="Next item or menu choice">›</button>
+      </div>
+    </section>
+    <section class="touch-deck touch-right" aria-label="Combat controls">
+      <div class="touch-row">
+        <button data-pad="15" aria-label="Hold Special and tap Light, Heavy, or Evade">Special <small>RT</small></button>
+        <button data-pad="11">Interact <small>RB</small></button>
+      </div>
+      <div class="touch-row">
+        <button data-pad="7">Light <small>X</small></button>
+        <button data-pad="4">Heavy <small>Y</small></button>
+      </div>
+      <div class="touch-row">
+        <button class="primary" data-pad="6">Jump / OK <small>A</small></button>
+        <button data-pad="5">Evade / Back <small>B</small></button>
+      </div>
+    </section>
     <div id="loading" role="status" aria-live="polite">
       <div class="panel">
         <img class="logo" src="TemplateData/title.png" alt="Dice, Drinks and Death Saves — The Video Game">
@@ -33,11 +67,13 @@
         <progress id="progress" value="0" max="1" aria-label="Game download progress"></progress>
         <div id="status">Preparing your adventure…</div>
         <button id="retry" hidden>Try again</button>
-        <p class="hint">Keyboard or a supported gamepad.<br>Progress is saved in this browser. Each visitor plays their own game.</p>
+        <p class="hint desktop-hint">Keyboard or a supported gamepad.</p>
+        <p class="hint touch-hint">Tap <strong>Jump / OK</strong> at the title. Turn your phone sideways for a larger game view.</p>
+        <p class="hint">The first load downloads about 230 MB. Progress is saved in this browser.</p>
       </div>
     </div>
-    <button id="fullscreen" aria-label="Enter fullscreen" hidden>Fullscreen</button>
   </main>
+  <script src="TemplateData/touch-pad.js"></script>
   <script>
     'use strict';
     const canvas=document.querySelector('#unity-canvas');
@@ -66,25 +102,25 @@
     }
     async function boot(){
       if(!('serviceWorker' in navigator) || !('DecompressionStream' in window))
-        throw new Error('This preview requires HTTPS and a current desktop browser.');
+        throw new Error('This preview requires HTTPS and a current browser.');
       await navigator.serviceWorker.register('preview-worker.js',{scope:'./',updateViaCache:'none'});
       await navigator.serviceWorker.ready;
       if(!navigator.serviceWorker.controller)await new Promise(resolve=>
         navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
       const script=document.createElement('script');
-      script.src='Build/WebPreview.loader.js';
+      script.src='Build/7e8397a1e200520514a23856e1f85287.loader.js';
       await new Promise((resolve,reject)=>{script.onload=resolve;script.onerror=reject;document.body.append(script);});
       const config={
         arguments:[],
-        dataUrl:'Build/WebPreview.data',
-        frameworkUrl:'Build/WebPreview.framework.js',
-        codeUrl:'Build/WebPreview.wasm',
+        dataUrl:'Build/a16f49f8af4a875e03b1cebef6b80677.data',
+        frameworkUrl:'Build/bb5c9616db4bada7253c7895991b0cce.framework.js',
+        codeUrl:'Build/52179e874162bada828cb819002170c1.wasm',
         streamingAssetsUrl:'StreamingAssets',
         companyName:"DDDS",
         productName:"Dice Drinks and Death Saves",
         productVersion:"1.0",
         autoSyncPersistentDataPath:true,
-        devicePixelRatio:Math.min(window.devicePixelRatio||1,2),
+        devicePixelRatio:Math.min(window.devicePixelRatio||1,window.dddsReadTouchPad ? 1.5 : 2),
         showBanner:(message,type)=>{if(type==='error')console.error(message);else console.warn(message);}
       };
       const instance=await createUnityInstance(canvas,config,value=>{
@@ -94,7 +130,7 @@
       });
       previewState.phase='ready';
       loading.hidden=true;
-      fullscreen.hidden=false;
+      fullscreen.hidden=!!window.dddsReadTouchPad;
       fullscreen.onclick=()=>{canvas.focus({preventScroll:true});instance.SetFullscreen(1);};
       canvas.focus({preventScroll:true});
     }
@@ -110,7 +146,7 @@
           await boot();
           // Hold ownership until this document closes, including while it is in the background.
           await new Promise(()=>{});
-        }catch(error){fail('The game could not start. Try again in a current desktop browser.',error);}
+        }catch(error){fail('The game could not start. Try a current browser such as Safari on iPhone or Chrome on Android.',error);}
       });
     }
     start().catch(error=>fail('Your browser could not open this game. Please try again.',error));

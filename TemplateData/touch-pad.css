@@ -1,0 +1,84 @@
+#preview { position: relative; width: 100%; height: 100%; }
+.touch-deck, .touch-hint { display: none; }
+.touch-preview body { overscroll-behavior: none; }
+.touch-preview #preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 'game game' 'move actions';
+  align-items: center;
+  justify-items: center;
+  gap: 6px;
+  padding: max(6px, env(safe-area-inset-top)) max(6px, env(safe-area-inset-right))
+           max(6px, env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
+  background: #171014;
+}
+.touch-preview #game {
+  grid-area: game;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  max-width: 1280px;
+  border: 1px solid #735531;
+}
+.touch-preview #loading { z-index: 1; overflow: auto; }
+.touch-preview .touch-hint { display: block; }
+.touch-preview .desktop-hint { display: none; }
+.touch-preview .touch-deck {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 200px);
+  gap: 5px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.touch-left { grid-area: move; }
+.touch-right { grid-area: actions; }
+.touch-row { display: flex; gap: 4px; }
+.touch-deck button {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 44px;
+  padding: 3px 2px;
+  border-radius: 8px;
+  background: linear-gradient(#38292b, #251c20);
+  font: 600 clamp(10px, 1.55vw, 13px)/1.15 system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+.touch-deck button small { display: block; color: #dcc28e; font-size: 10px; }
+.touch-deck button.primary { background: #63462b; border-color: #f0c578; }
+.touch-deck button.pressed { background: #f1cf8f; color: #271819; }
+.touch-deck button.pressed small { color: #513723; }
+#touch-stick {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(74px, 25dvh, 122px);
+  aspect-ratio: 1;
+  align-self: center;
+  border: 1px solid #be9955;
+  border-radius: 50%;
+  background: radial-gradient(circle, #3b2b2d 25%, #21171a 75%);
+  touch-action: none;
+}
+#touch-stick span {
+  width: 38%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid #d4ae6a;
+  background: #896338;
+  pointer-events: none;
+}
+@media (orientation: landscape) {
+  .touch-preview #preview {
+    grid-template-columns: clamp(105px, 16vw, 170px) minmax(0, 1fr) clamp(105px, 16vw, 170px);
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-areas: 'move game actions';
+  }
+  .touch-preview #game { max-width: min(1280px, calc((100dvh - 40px) * 16 / 9)); }
+}
+@media (orientation: portrait) {
+  .touch-preview #preview { align-content: center; grid-template-rows: auto auto; gap: 14px 8px; }
+}

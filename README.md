@@ -2,9 +2,9 @@
 
 Free playable development preview. Each visitor plays their own browser copy.
 
-Use a current desktop browser with a keyboard or connected Xbox controller. Initial download is approximately 230 MB. Progress saves in this browser; it does not follow you between devices.
+On a phone, use a current browser and the on-screen controls. Landscape gives a larger game view. Tap Jump / OK at the title. On desktop, use the keyboard or a connected Xbox controller. Initial download is approximately 230 MB. Progress saves in this browser; it does not follow you between devices.
 
-The preview includes four-hero control practice, the fighting pit and Death Saves, a walkable tavern, the jungle/Owlbear quest and Mezro/Ricky quest. Tavern minigames are marked coming soon. Level pacing and animation are still being developed. Internet multiplayer and touch controls are not included.
+The preview includes four-hero control practice, the fighting pit and Death Saves, a walkable tavern, the jungle/Owlbear quest and Mezro/Ricky quest. Tavern minigames are marked coming soon. Level pacing and animation are still being developed. Internet multiplayer is a future feature.
 
 | Action | Keyboard | Xbox |
 |---|---|---|

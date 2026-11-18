@@ -1,13 +1,10 @@
 {
-  "browserRoute": "1a12184132654fdabb3801036a0c99ed",
   "kind": "Playable development preview",
-  "source": "b7080b4330b717b1e2d1df445a5c21868b024644",
-  "nativeGraphics": "80/84 at f34ddcc; full native qualification remains open",
-  "humanControllerAcceptance": "Provisional",
-  "unity": "6000.3.24f1",
-  "qualificationRuns": [
-    "ba89edb1491f4aebbd78ca50cdcbb08a",
-    "75a6ecf0533a4023b0589043527201c6",
-    "607951a7bc634fd1bdc7586b4a69ea2a"
-  ]
+  "previousBuild": "4c4b55f",
+  "physicalMobileAcceptance": "Provisional",
+  "webRun": "13abb238f0a5428ea6b7b4062aa50baf",
+  "editRun": "1302d0d7e6e947378809a571ea016a31",
+  "source": "3f3d888850a471c0dd6ee5b6d322da7f2ebad1e8",
+  "touch": true,
+  "unity": "6000.3.24f1"
 }
