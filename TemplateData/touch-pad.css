@@ -21,7 +21,7 @@
   max-width: 1280px;
   border: 1px solid #735531;
 }
-.touch-preview #loading { z-index: 1; overflow: auto; }
+.touch-preview #loading { z-index: 3; overflow: auto; }
 .touch-preview .touch-hint { display: block; }
 .touch-preview .desktop-hint { display: none; }
 .touch-preview .touch-deck {
@@ -43,13 +43,15 @@
   min-height: 44px;
   padding: 3px 2px;
   border-radius: 8px;
-  background: linear-gradient(#38292b, #251c20);
+  background: #261b2075;
+  border-color: #e7bd748c;
   font: 600 clamp(10px, 1.55vw, 13px)/1.15 system-ui, sans-serif;
+  text-shadow: 0 1px 3px #130c10, 0 0 4px #130c10;
   -webkit-tap-highlight-color: transparent;
 }
 .touch-deck button small { display: block; color: #dcc28e; font-size: 10px; }
-.touch-deck button.primary { background: #63462b; border-color: #f0c578; }
-.touch-deck button.pressed { background: #f1cf8f; color: #271819; }
+.touch-deck button.primary { background: #63462b75; border-color: #f0c578b3; }
+.touch-deck button.pressed { background: #f1cf8f; color: #271819; text-shadow: none; }
 .touch-deck button.pressed small { color: #513723; }
 #touch-stick {
   position: relative;
@@ -60,7 +62,7 @@
   align-self: center;
   border: 1px solid #be9955;
   border-radius: 50%;
-  background: radial-gradient(circle, #3b2b2d 25%, #21171a 75%);
+  background: radial-gradient(circle, #3b2b2d80 25%, #21171a99 75%);
   touch-action: none;
 }
 #touch-stick span {
@@ -68,16 +70,35 @@
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1px solid #d4ae6a;
-  background: #896338;
+  background: #896338bf;
   pointer-events: none;
 }
 @media (orientation: landscape) {
   .touch-preview #preview {
-    grid-template-columns: clamp(105px, 16vw, 170px) minmax(0, 1fr) clamp(105px, 16vw, 170px);
-    grid-template-rows: minmax(0, 1fr);
-    grid-template-areas: 'move game actions';
+    display: grid;
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+    grid-template-areas: 'game';
+    gap: 0;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+             env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
-  .touch-preview #game { max-width: min(1280px, calc((100dvh - 40px) * 16 / 9)); }
+  .touch-preview #game {
+    max-width: min(1280px, calc((100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 16 / 9));
+    border: 0;
+  }
+  .touch-preview .touch-deck {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: clamp(118px, 17vw, 164px);
+  }
+  .touch-preview .touch-left {
+    left: max(6px, env(safe-area-inset-left));
+  }
+  .touch-preview .touch-right {
+    right: max(6px, env(safe-area-inset-right));
+  }
 }
 @media (orientation: portrait) {
   .touch-preview #preview { align-content: center; grid-template-rows: auto auto; gap: 14px 8px; }

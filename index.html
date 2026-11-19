@@ -20,7 +20,8 @@
     progress::-moz-progress-bar{background:#e9c477}#status{font:16px/1.6 system-ui,sans-serif;min-height:52px}
     .hint{font:13px/1.6 system-ui,sans-serif;color:#c4b5a2;margin-top:16px}
     button{border:1px solid #be9955;background:#251a1e;color:#f7e6c5;padding:10px 16px;cursor:pointer;font:14px system-ui,sans-serif}
-    button:focus-visible{outline:2px solid #fff1c7;outline-offset:3px}button:hover{background:#433027}
+    button:focus-visible{outline:2px solid #fff1c7;outline-offset:3px}
+    @media (hover:hover){button:hover{background:#433027}}
     #fullscreen{position:absolute;right:10px;top:10px;padding:7px 10px;background:#171014c9}
   </style>
 </head>
@@ -41,9 +42,9 @@
         <button data-pad="14">Signature <small>LT</small></button>
       </div>
       <div class="touch-row">
-        <button data-pad="2" aria-label="Previous item or menu choice">‹</button>
+        <button data-pad="2" aria-label="Previous item or menu choice">Prev</button>
         <button data-pad="1" aria-label="Use selected item">Use</button>
-        <button data-pad="3" aria-label="Next item or menu choice">›</button>
+        <button data-pad="3" aria-label="Next item or menu choice">Next</button>
       </div>
     </section>
     <section class="touch-deck touch-right" aria-label="Combat controls">
@@ -108,19 +109,23 @@
       if(!navigator.serviceWorker.controller)await new Promise(resolve=>
         navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
       const script=document.createElement('script');
-      script.src='Build/7e8397a1e200520514a23856e1f85287.loader.js';
+      script.src='Build/e9cc4fa066efef3f527ea59ac0b00d9b.loader.js';
       await new Promise((resolve,reject)=>{script.onload=resolve;script.onerror=reject;document.body.append(script);});
+      const hasTouch=!!window.dddsReadTouchPad;
+      // Cap the buffer for the larger landscape view, even when launched in portrait.
+      const expectedTouchWidth=Math.min(1280,Math.max(canvas.clientWidth,Math.min(innerWidth,innerHeight)*16/9));
+      const pixelRatioLimit=hasTouch ? Math.min(1.5,960/expectedTouchWidth) : 2;
       const config={
         arguments:[],
-        dataUrl:'Build/a16f49f8af4a875e03b1cebef6b80677.data',
-        frameworkUrl:'Build/bb5c9616db4bada7253c7895991b0cce.framework.js',
-        codeUrl:'Build/52179e874162bada828cb819002170c1.wasm',
+        dataUrl:'Build/8a041dedb7f04196c8fe8566dedad599.data',
+        frameworkUrl:'Build/fbd9eb414d341d4594e46a8374ed8a38.framework.js',
+        codeUrl:'Build/4c33386bc20a73c6200e7f503c3a258d.wasm',
         streamingAssetsUrl:'StreamingAssets',
         companyName:"DDDS",
         productName:"Dice Drinks and Death Saves",
         productVersion:"1.0",
         autoSyncPersistentDataPath:true,
-        devicePixelRatio:Math.min(window.devicePixelRatio||1,window.dddsReadTouchPad ? 1.5 : 2),
+        devicePixelRatio:Math.min(window.devicePixelRatio||1,pixelRatioLimit),
         showBanner:(message,type)=>{if(type==='error')console.error(message);else console.warn(message);}
       };
       const instance=await createUnityInstance(canvas,config,value=>{
@@ -130,7 +135,7 @@
       });
       previewState.phase='ready';
       loading.hidden=true;
-      fullscreen.hidden=!!window.dddsReadTouchPad;
+      fullscreen.hidden=hasTouch;
       fullscreen.onclick=()=>{canvas.focus({preventScroll:true});instance.SetFullscreen(1);};
       canvas.focus({preventScroll:true});
     }

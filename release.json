@@ -1,10 +1,13 @@
 {
   "kind": "Playable development preview",
-  "previousBuild": "4c4b55f",
-  "physicalMobileAcceptance": "Provisional",
-  "webRun": "13abb238f0a5428ea6b7b4062aa50baf",
-  "editRun": "1302d0d7e6e947378809a571ea016a31",
-  "source": "3f3d888850a471c0dd6ee5b6d322da7f2ebad1e8",
+  "source": "d727925dcc33923d3f09a7954839b2e51bc7709b",
+  "unity": "6000.3.24f1",
+  "previousBuild": "1c5c8c1",
+  "webRun": "3005582d1ec24f289fdb5de980873c07",
+  "windowsRun": "fc386ac7539549a39b566a6829b272cb",
+  "editRun": "a88b910b18554252a8fd00b949884131",
+  "graphicsRun": "44f751ba3f9a42e4926d58c814be8bfb",
+  "browserRoute": "Tutorial and both quest routes complete, save update and reload checked",
   "touch": true,
-  "unity": "6000.3.24f1"
+  "physicalMobileAcceptance": "Provisional"
 }
