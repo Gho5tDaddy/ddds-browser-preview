@@ -102,4 +102,7 @@
 }
 @media (orientation: portrait) {
   .touch-preview #preview { align-content: center; grid-template-rows: auto auto; gap: 14px 8px; }
+  .touch-preview.quest-panel-open #preview { grid-template-rows: minmax(0, 1fr); grid-template-areas: 'game game'; gap: 0; }
+  .touch-preview.quest-panel-open #game { height: 100%; aspect-ratio: auto; }
 }
+.touch-preview.quest-panel-open .touch-deck { display: none; }

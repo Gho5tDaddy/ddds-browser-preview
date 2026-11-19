@@ -1,13 +1,16 @@
 {
   "kind": "Playable development preview",
-  "source": "d727925dcc33923d3f09a7954839b2e51bc7709b",
+  "source": "ea97267b978e04409bfd8248e1afb33447c06950",
   "unity": "6000.3.24f1",
-  "previousBuild": "1c5c8c1",
-  "webRun": "3005582d1ec24f289fdb5de980873c07",
-  "windowsRun": "fc386ac7539549a39b566a6829b272cb",
-  "editRun": "a88b910b18554252a8fd00b949884131",
-  "graphicsRun": "44f751ba3f9a42e4926d58c814be8bfb",
-  "browserRoute": "Tutorial and both quest routes complete, save update and reload checked",
+  "previousPublication": "07c0ee28ac81fa935944a20f1997e150f21a9f7e",
+  "webRun": "b0c3e9e0ebf6403f9108bdfd36de6efd",
+  "windowsRun": "59337492a6194f50999f7ac1a057ae2e",
+  "editRun": "2d7e10bbfcf048feb9c2e34faa60e1c9",
+  "graphicsRun": "6a7c5869ef714dec8075d784d2702730",
+  "browserRoute": "Fresh four-hero tutorial, Graziella, Owlbear and Mezro/Ricky routes, reload and old-save upgrade checked",
+  "title": "New Game, Continue, optional tutorial and four-hero choice",
   "touch": true,
-  "physicalMobileAcceptance": "Provisional"
+  "audio": "Short continuous stereo mix observed; sustained and physical listening remain provisional",
+  "physicalMobileAcceptance": "Provisional",
+  "remaining": "30-minute pacing, kennelmaster/helper dog, minigame rounds and further animation/reporting work"
 }

@@ -92,6 +92,10 @@
     buttons = 0;
     centerStick();
   }
+  window.dddsSetQuestPanel = open => {
+    if(open)clear();
+    document.documentElement.classList.toggle('quest-panel-open', Boolean(open));
+  };
   window.addEventListener('blur', clear);
   window.addEventListener('pagehide', clear);
   document.addEventListener('visibilitychange', () => { if (document.hidden) clear(); });

@@ -2,9 +2,13 @@
 
 Free playable development preview. Each visitor plays their own browser copy.
 
-On a phone, use a current browser and the on-screen controls. Landscape gives a larger game view. Tap Jump / OK at the title. On desktop, use the keyboard or a connected Xbox controller. Initial download is approximately 230 MB. Progress saves in this browser; it does not follow you between devices.
+Choose New Game to start fresh, Continue to keep playing your save, or Skip Tutorial to select one of the four heroes and go directly to the tavern. Starting a new game over existing progress asks for confirmation; settings and the normal previous-save backup are retained.
 
-The preview includes four-hero control practice, the fighting pit and Death Saves, a walkable tavern, the jungle/Owlbear quest and Mezro/Ricky quest. Tavern minigames are marked coming soon. Level pacing and animation are still being developed. Internet multiplayer is a future feature.
+On a phone, use a current browser and the labeled on-screen controls. Landscape gives a larger game view. Tap Jump / OK at the title. On desktop, use the keyboard or a connected Xbox controller. Initial download is approximately 248 MB. Progress saves in this browser; it does not follow you between devices.
+
+The preview includes four-hero control practice with an unarmed orc guard, the recessed indoor fighting pit and animated betting crowd, Death Saves, a walkable tavern, the jungle/Owlbear quest and Mezro/Ricky quest. Graziella leads the Yellowjackets at the paper-nest tenements, with phased attacks, a defeat pose and wearable coat loot. The jungle progresses toward sunset and a nighttime Owlbear camp encounter. Alizard has ranged fireball Light attacks and the revised moonshine fire attack. This update also includes boss rewards, encounter-view locks, visible Bandit charge travel, the centered quest panel, separated N'kalu furniture and audio/input repairs.
+
+This is an in-development preview. The 30-minute level and sustained final-boss pacing targets are not yet met. The kennelmaster/helper dog, additional animation polish, playable tavern minigame rounds and player-facing playtest report remain unfinished. Physical phone performance, listening and controller acceptance remain provisional. Internet multiplayer is a future feature.
 
 | Action | Keyboard | Xbox |
 |---|---|---|

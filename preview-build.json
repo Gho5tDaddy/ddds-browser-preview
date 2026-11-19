@@ -8,12 +8,12 @@
     {
       "path": "index.html",
       "bytes": 8698,
-      "sha256": "2939acbe293b03527c25ebb2f17a60bdea1d7b9bed238ecf454a48245b1f369a"
+      "sha256": "06dc5af8a05ee015aedd6a4f1567b511bb00c6a665ddfac052f6edc986f7ef15"
     },
     {
       "path": "preview-assets.json",
       "bytes": 510,
-      "sha256": "6c76bf26a2176104327d712c074dbed45e3356494c2ef796ee6c4d02191c7578"
+      "sha256": "0a3948dba8ba2c23b508b17947448ac94a4c65ab7d1244dd5ed77a7ef758f9d6"
     },
     {
       "path": "preview-worker.js",
@@ -27,59 +27,64 @@
     },
     {
       "path": "TemplateData/touch-pad.css",
-      "bytes": 3228,
-      "sha256": "5da6bacdeb2561a1aff964d30e29f94e545386955b7e09f0e415bdb6a72b587c"
+      "bytes": 3494,
+      "sha256": "28b5d39de56abcad520594a72a06ed4674d52f31209627f4c35d6606c657a121"
     },
     {
       "path": "TemplateData/touch-pad.js",
-      "bytes": 3470,
-      "sha256": "a269d0df7580362ef7dff7a7b44cbf6dd02d816c8df145be4852b01b526bbfb1"
+      "bytes": 3617,
+      "sha256": "dac0fb730f6370d0f41b3741023f57a29760083a4452675eb9d809cd4de0ee19"
     },
     {
-      "path": "Build/4c33386bc20a73c6200e7f503c3a258d.wasm.c85a44a26745af36.0.gz",
-      "bytes": 24029832,
-      "sha256": "c85a44a26745af36a8f3907233f2c45c15e3d85793d2c41bf3bdf9a6301a4b83"
+      "path": "StreamingAssets/Licenses/LilitaOne-OFL.txt",
+      "bytes": 4390,
+      "sha256": "9c14147639ea90cfa41b0645c77b4fa642494d11696e2a9f5cd2d9b5843c1a6e"
     },
     {
-      "path": "Build/8a041dedb7f04196c8fe8566dedad599.data.0693905a80320667.0.gz",
+      "path": "Build/10d4a830c6f5571bbc9e56048b516537.data.04030836f457d06a.0.gz",
       "bytes": 83886080,
-      "sha256": "5499a0acafe874e6cdd0bde3ff8355a237287a2ffb3439dab062b58ecf6fd904"
+      "sha256": "0cab9c0d1fe3235d84d674faecf8be505304caefa12652e0df141bd48f02e192"
     },
     {
-      "path": "Build/8a041dedb7f04196c8fe8566dedad599.data.0693905a80320667.1.gz",
+      "path": "Build/10d4a830c6f5571bbc9e56048b516537.data.04030836f457d06a.1.gz",
       "bytes": 83886080,
-      "sha256": "f070abfce237d547f063a1a34c2f7ab7c1cc1a950ddb61a5ab049af661485d38"
+      "sha256": "342f9cc55658e0f2d9b442f3e5b5e236271d5f5a765fef4cf6925784f0d54fed"
     },
     {
-      "path": "Build/8a041dedb7f04196c8fe8566dedad599.data.0693905a80320667.2.gz",
-      "bytes": 37806178,
-      "sha256": "4b565601f833c0cfe926732bdd84f63e332bd238540274ca801c55f0d6d87563"
+      "path": "Build/10d4a830c6f5571bbc9e56048b516537.data.04030836f457d06a.2.gz",
+      "bytes": 53399935,
+      "sha256": "8e879396474923124199ec42e0ee27c02c0cbd493923d9fab36d6a57cfa0dbfc"
     },
     {
-      "path": "Build/e9cc4fa066efef3f527ea59ac0b00d9b.loader.js",
+      "path": "Build/41e5b013cfd21458af097b1ecbf291a7.wasm.a60d3ced18f0674d.0.gz",
+      "bytes": 24033735,
+      "sha256": "a60d3ced18f0674d7eb9950affae2486a0ab1fddd05b8c24b2c01936d85f2255"
+    },
+    {
+      "path": "Build/b67cb535ac8755dc3b1a8f5f97d704e0.framework.js",
+      "bytes": 826081,
+      "sha256": "aa9dae0a177f2fc98755c663e0441234884278ca30f9abf692a993f9e05abfd7"
+    },
+    {
+      "path": "Build/ee344f385be38ac4828adf96b70b6624.loader.js",
       "bytes": 58344,
-      "sha256": "727128554b0b8067daf1c32d8340fa765174a5ee44969b637d2e4cfe25939c9f"
-    },
-    {
-      "path": "Build/fbd9eb414d341d4594e46a8374ed8a38.framework.js",
-      "bytes": 824552,
-      "sha256": "e99505b944b10826c81886ea877e63413aedaa222ee3f8e09fdba23feb2ae63a"
+      "sha256": "dd695ee0bad6fe0256c10b197d7c6435fe75a762b18b54bd32428c21509c418a"
     }
   ],
   "compressed": [
     {
-      "file": "Build/4c33386bc20a73c6200e7f503c3a258d.wasm",
-      "rawBytes": 106607641,
-      "downloadBytes": 24029832,
-      "sha256": "c85a44a26745af36a8f3907233f2c45c15e3d85793d2c41bf3bdf9a6301a4b83",
-      "parts": 1
+      "file": "Build/10d4a830c6f5571bbc9e56048b516537.data",
+      "rawBytes": 250783773,
+      "downloadBytes": 221172095,
+      "sha256": "04030836f457d06a7adb9e519b19d1426540bbc85a4332fd69b54a7a8fd438f6",
+      "parts": 3
     },
     {
-      "file": "Build/8a041dedb7f04196c8fe8566dedad599.data",
-      "rawBytes": 233576312,
-      "downloadBytes": 205578338,
-      "sha256": "0693905a803206679f23c2e02783a61f42f451101e62252479ded6954df39a2e",
-      "parts": 3
+      "file": "Build/41e5b013cfd21458af097b1ecbf291a7.wasm",
+      "rawBytes": 106898956,
+      "downloadBytes": 24033735,
+      "sha256": "a60d3ced18f0674d7eb9950affae2486a0ab1fddd05b8c24b2c01936d85f2255",
+      "parts": 1
     }
   ]
 }
