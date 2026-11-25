@@ -21,6 +21,11 @@
     .hint{font:13px/1.6 system-ui,sans-serif;color:#c4b5a2;margin-top:16px}
     button{border:1px solid #be9955;background:#251a1e;color:#f7e6c5;padding:10px 16px;cursor:pointer;font:14px system-ui,sans-serif}
     button:focus-visible{outline:2px solid #fff1c7;outline-offset:3px}
+    #retry{min-height:44px;min-width:88px}
+    #loading.startup-error .panel{max-height:100%;overflow:auto;padding:20px}
+    #loading.startup-error .logo{width:auto;max-width:100%;max-height:28dvh}
+    #loading.startup-error .label,#loading.startup-error .hint{display:none}
+    #loading.startup-error #status{min-height:0;margin:12px 0 16px}
     @media (hover:hover){button:hover{background:#433027}}
     #fullscreen{position:absolute;right:10px;top:10px;padding:7px 10px;background:#171014c9}
   </style>
@@ -75,6 +80,8 @@
     </div>
   </main>
   <script src="TemplateData/touch-pad.js"></script>
+  <script src="TemplateData/render-budget.js"></script>
+  <script src="TemplateData/browser-startup.js"></script>
   <script>
     'use strict';
     const canvas=document.querySelector('#unity-canvas');
@@ -96,6 +103,7 @@
     function fail(message,error){
       previewState.phase='error';
       loading.hidden=false;
+      loading.classList.add('startup-error');
       progress.hidden=true;
       status.textContent=message;
       retry.hidden=false;
@@ -104,28 +112,22 @@
     async function boot(){
       if(!('serviceWorker' in navigator) || !('DecompressionStream' in window))
         throw new Error('This preview requires HTTPS and a current browser.');
-      await navigator.serviceWorker.register('preview-worker.js',{scope:'./',updateViaCache:'none'});
-      await navigator.serviceWorker.ready;
-      if(!navigator.serviceWorker.controller)await new Promise(resolve=>
-        navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
+      await window.dddsBrowserStartup.prepareWorker(navigator.serviceWorker);
       const script=document.createElement('script');
-      script.src='Build/ee344f385be38ac4828adf96b70b6624.loader.js';
+      script.src='Build/48aa4addd8eac4f3fede46c359e7534d.loader.js';
       await new Promise((resolve,reject)=>{script.onload=resolve;script.onerror=reject;document.body.append(script);});
       const hasTouch=!!window.dddsReadTouchPad;
-      // Cap the buffer for the larger landscape view, even when launched in portrait.
-      const expectedTouchWidth=Math.min(1280,Math.max(canvas.clientWidth,Math.min(innerWidth,innerHeight)*16/9));
-      const pixelRatioLimit=hasTouch ? Math.min(1.5,960/expectedTouchWidth) : 2;
       const config={
         arguments:[],
-        dataUrl:'Build/10d4a830c6f5571bbc9e56048b516537.data',
-        frameworkUrl:'Build/b67cb535ac8755dc3b1a8f5f97d704e0.framework.js',
-        codeUrl:'Build/41e5b013cfd21458af097b1ecbf291a7.wasm',
+        dataUrl:'Build/a0d18c05f665b43afa50db5edfb7e007.data',
+        frameworkUrl:'Build/5b6d84810d3ed8e8b3476ba0963f8bb3.framework.js',
+        codeUrl:'Build/348aed3da3c694fd219b006ecc0d8e05.wasm',
         streamingAssetsUrl:'StreamingAssets',
         companyName:"DDDS",
         productName:"Dice Drinks and Death Saves",
         productVersion:"1.0",
         autoSyncPersistentDataPath:true,
-        devicePixelRatio:Math.min(window.devicePixelRatio||1,pixelRatioLimit),
+        devicePixelRatio:window.dddsRenderBudget.pixelRatio(canvas,hasTouch),
         showBanner:(message,type)=>{if(type==='error')console.error(message);else console.warn(message);}
       };
       const instance=await createUnityInstance(canvas,config,value=>{
@@ -133,6 +135,7 @@
         previewState.progress=value;
         status.textContent='Loading your adventure… '+Math.round(value*100)+'%';
       });
+      instance.Module.deinitializers.push(window.dddsRenderBudget.follow(canvas,instance.Module,hasTouch));
       previewState.phase='ready';
       loading.hidden=true;
       fullscreen.hidden=hasTouch;
@@ -151,7 +154,11 @@
           await boot();
           // Hold ownership until this document closes, including while it is in the background.
           await new Promise(()=>{});
-        }catch(error){fail('The game could not start. Try a current browser such as Safari on iPhone or Chrome on Android.',error);}
+        }catch(error){
+          fail(error?.code==='DDDS_BROWSER_SUPPORT_TIMEOUT'
+            ? 'Browser setup took too long. Check your connection, then try again.'
+            : 'The game could not start. Try a current browser such as Safari on iPhone or Chrome on Android.',error);
+        }
       });
     }
     start().catch(error=>fail('Your browser could not open this game. Please try again.',error));

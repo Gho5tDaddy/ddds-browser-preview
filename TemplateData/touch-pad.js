@@ -96,6 +96,10 @@
     if(open)clear();
     document.documentElement.classList.toggle('quest-panel-open', Boolean(open));
   };
+  window.dddsSetStoryPanel = open => {
+    if(open)clear();
+    document.documentElement.classList.toggle('story-scene', Boolean(open));
+  };
   window.addEventListener('blur', clear);
   window.addEventListener('pagehide', clear);
   document.addEventListener('visibilitychange', () => { if (document.hidden) clear(); });
